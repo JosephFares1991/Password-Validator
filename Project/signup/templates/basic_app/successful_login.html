@@ -1,0 +1,11 @@
+{% extends 'basic_app/main.html' %}
+
+{% block body_block %}
+    <div class="jumbotron col-md-12">
+        {% if user.is_authenticated %}
+        <p><strong>You Successfully Logged in. Welcome!</strong></p>
+        {% else %}
+        <p><strong>You have Successfully Logged out</strong></p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'basic_app/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+
+
+{% if page == 'login' %}
+  {% if message.tags == 'error' %}
+            <!-- bootstrap alert -->
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    {% endif %}
+    {% if message.tags == 'success' %}
+            <!-- bootstrap alert -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    {% endif %}
+    
+<div class="row">
+    <div class="col-md-2">        
+    </div>
+    <div class="col-md-8">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <input type="submit" class="btn btn-primary btn-sm" value="Login"/>
+    </form>
+    </div>
+    
+</div>
+
+{% else %}
+
+<div class="row">
+    <div class="col-md-2">        
+    </div>
+    <div class="col-md-8">
+        <div class="card" style="color:black;">
+            <div class="card-body">
+                <h5 class="card-title">
+                <a href="{% url 'basic_app:user_register' %}">Register to be a member</a> 
+                <span style="float:right">Are you a member? <a href="{% url 'basic_app:user_login' %}" class="text-primary">Login now</a></span></h5>
+                <div class="card-text">
+                     <form action="" method="POST" style="font-size: x-small;">
+                        {% csrf_token %}
+                        {{ form|crispy}}
+                        
+                        <input type="submit" class="btn btn-primary btn-sm" value="Register"/>
+                    </form>
+                 </div>
+                </div>
+             </div>
+             </div>
+            </div>
+         </div>
+        </div>
+
+{% endif %}
+
+{% endblock %}
